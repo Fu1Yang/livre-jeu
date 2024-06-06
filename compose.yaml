@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  mysql-srv:
+    image: mysql:8.3
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: LivreJeu
+      MYSQL_USER: user_db
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80 
+    environment:
+      - PMA_ARBITRARY=1

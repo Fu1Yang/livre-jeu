@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alternative index{% endblock %}
+
+{% block body %}
+    <h1>Alternative index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Texte_ambiance</th>
+                <th>Libelle</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for alternative in alternatives %}
+            <tr>
+                <td>{{ alternative.id }}</td>
+                <td>{{ alternative.texteAmbiance }}</td>
+                <td>{{ alternative.libelle }}</td>
+                <td>
+                    <a href="{{ path('app_alternative_show', {'id': alternative.id}) }}">show</a>
+                    <a href="{{ path('app_alternative_edit', {'id': alternative.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_alternative_new') }}">Create new</a>
+{% endblock %}
