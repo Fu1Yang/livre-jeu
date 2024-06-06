@@ -23,6 +23,9 @@ class Alternative
     #[ORM\JoinColumn(nullable: false)]
     private ?Etape $etapeSuivante = null;
 
+    #[ORM\ManyToOne(inversedBy: 'alternatives')]
+    private ?Etape $etapePrecedente = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -67,6 +70,18 @@ class Alternative
     public function __toString()
     {
         return $this->libelle;
+    }
+
+    public function getEtapePrecedente(): ?Etape
+    {
+        return $this->etapePrecedente;
+    }
+
+    public function setEtapePrecedente(?Etape $etapePrecedente): static
+    {
+        $this->etapePrecedente = $etapePrecedente;
+
+        return $this;
     }
 }
 

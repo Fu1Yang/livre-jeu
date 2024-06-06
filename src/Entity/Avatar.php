@@ -80,4 +80,8 @@ class Avatar
     {
         return $this->nom_fichier;
     }
+
+  
 }
+
+

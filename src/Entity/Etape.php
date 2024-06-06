@@ -36,9 +36,16 @@ class Etape
     #[ORM\OneToMany(targetEntity: Partie::class, mappedBy: 'etape')]
     private Collection $parties;
 
+    /**
+     * @var Collection<int, Alternative>
+     */
+    #[ORM\OneToMany(targetEntity: Alternative::class, mappedBy: 'etapePrecedente')]
+    private Collection $alternatives;
+
     public function __construct()
     {
         $this->parties = new ArrayCollection();
+        $this->alternatives = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -149,6 +156,36 @@ class Etape
     public function __toString()
     {
         return $this->libelle;
+    }
+
+    /**
+     * @return Collection<int, Alternative>
+     */
+    public function getAlternatives(): Collection
+    {
+        return $this->alternatives;
+    }
+
+    public function addAlternative(Alternative $alternative): static
+    {
+        if (!$this->alternatives->contains($alternative)) {
+            $this->alternatives->add($alternative);
+            $alternative->setEtapePrecedente($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAlternative(Alternative $alternative): static
+    {
+        if ($this->alternatives->removeElement($alternative)) {
+            // set the owning side to null (unless already changed)
+            if ($alternative->getEtapePrecedente() === $this) {
+                $alternative->setEtapePrecedente(null);
+            }
+        }
+
+        return $this;
     }
 }
 

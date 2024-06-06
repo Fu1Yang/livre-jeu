@@ -5,7 +5,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: LivreJeu
-      MYSQL_USER: user_db
+      MYSQL_USER: userdb
       MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
