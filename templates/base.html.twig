@@ -10,11 +10,13 @@
         {% endblock %}
 
         {% block javascripts %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
-    <a href="{{path('app_home')}}"> Accueil</a>
+    <div class="container  d-flex flex-column-reverse min-vh-100 p-5">
         {% block body %}{% endblock %}
+    </div>
     </body>
 </html>

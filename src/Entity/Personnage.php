@@ -28,6 +28,9 @@ class Personnage
     #[ORM\OneToMany(targetEntity: Partie::class, mappedBy: 'aventurier')]
     private Collection $parties;
 
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
+
     public function __construct()
     {
         $this->parties = new ArrayCollection();
@@ -95,6 +98,18 @@ class Personnage
     public function __toString()
     {
         return $this->prenom;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
+
+        return $this;
     }
 }
 

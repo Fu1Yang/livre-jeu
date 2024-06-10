@@ -1,11 +1,6 @@
-framework:
-    validation:
-        # Enables validator auto-mapping support.
-        # For instance, basic validation constraints will be inferred from Doctrine's metadata.
-        #auto_mapping:
-        #    App\Entity\: []
-
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    form_themes: ['bootstrap_5_layout.html.twig']
 when@test:
-    framework:
-        validation:
-            not_compromised_password: false
+    twig:
+        strict_variables: true
