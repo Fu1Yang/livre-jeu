@@ -19,8 +19,7 @@
                 <td>{{ personnage.id }}</td>
                 <td>{{ personnage.prenom }}</td>
                 <td>
-                    <a href="{{ path('app_personnage_show', {'id': personnage.id}) }}">show</a>
-                    <a href="{{ path('app_personnage_edit', {'id': personnage.id}) }}">edit</a>
+                    <a href="{{path('app_choix_aventure',{'idPersonnage': personnage.id})}}" >{{ personnage.prenom }} {{ personnage.nom }}</a>
                 </td>
             </tr>
         {% else %}

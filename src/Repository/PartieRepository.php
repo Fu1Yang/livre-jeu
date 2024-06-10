@@ -15,7 +15,16 @@ class PartieRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Partie::class);
     }
-
+    public function save(Partie $partie, $flush = true)
+    {
+        $entityManager = $this->getEntityManager();
+        $entityManager->persist($partie);
+        if ($flush) {
+            $entityManager->flush();
+        }
+    }
+    
+ 
     //    /**
     //     * @return Partie[] Returns an array of Partie objects
     //     */

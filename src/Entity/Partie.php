@@ -81,4 +81,5 @@ class Partie
 
         return $this;
     }
+    
 }

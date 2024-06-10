@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fin de l'aventure{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center">{{ etape.titre }}</h1>
+    <p>{{ etape.texteAmbiance }}</p>
+    <div class="text-center mt-4">
+        <a href="{{ path('app_jouer') }}" class="btn btn-primary">Retourner à la sélection des aventures</a>
+    </div>
+    <div class="text-center mt-4">
+        <p>Félicitations ! Vous avez terminé l'aventure. Vous avez assuré !</p>
+    </div>
+</div>
+{% endblock %}

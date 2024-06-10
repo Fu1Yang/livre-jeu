@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Démarrer l'aventure{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center">
+        Le personnage {{ personnage.prenom }} {{ personnage.nom }} commence l'aventure {{ aventure.titre }} !
+    </h1>
+    {% if isNewPartie %}
+        <p class="text-center">Une nouvelle partie a été créée.</p>
+    {% else %}
+        <p class="text-center">Reprise de la partie en cours.</p>
+    {% endif %}
+    <div class="text-center mt-4">
+        <a href="{{ path('app_play_aventure', {'idPartie': partie.id, 'idEtape': partie.etape.id}) }}" class="btn btn-primary">Lancer</a>
+    </div>
+</div>
+{% endblock %}
