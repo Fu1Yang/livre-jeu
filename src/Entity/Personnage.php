@@ -31,6 +31,11 @@ class Personnage
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
+    #[ORM\ManyToOne(inversedBy: 'personnages')]
+    private ?User $user = null;
+
+
+
     public function __construct()
     {
         $this->parties = new ArrayCollection();
@@ -111,6 +116,20 @@ class Personnage
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+
 }
 
 

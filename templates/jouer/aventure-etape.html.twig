@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jouer Étape{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title">{{ etape.id }}</h1>
+            <p class="card-text">{{ etape.texteAmbiance }}</p>
+
+            {% if etape.alternatives is not empty %}
+                <h2 class="mt-4">Choisissez une alternative :</h2>
+                <ul class="list-group">
+                {% for alternative in etape.alternatives %}
+                    <li class="list-group-item">
+                        <a href="{{ path('app_play_alternative', { 'idPartie': partie.id, 'idEtape': etape.id, 'idAlternative': alternative.id }) }}">
+                            {{ alternative.texteAmbiance }}
+                        </a>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                <p class="mt-4">Fin de l'aventure. Félicitations !</p>
+            {% endif %}
+
+            <!-- Bouton pour revenir au début -->
+            <div class="mt-4">
+                <a href="{{ path('app_jouer') }}" class="btn btn-secondary">Revenir au début</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

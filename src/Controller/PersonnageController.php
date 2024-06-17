@@ -16,7 +16,8 @@ class PersonnageController extends AbstractController
 {
     #[Route('/', name: 'app_personnage_index', methods: ['GET'])]
     public function index(PersonnageRepository $personnageRepository): Response
-    {
+    {   
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         return $this->render('personnage/index.html.twig', [
             'personnages' => $personnageRepository->findAll(),
         ]);

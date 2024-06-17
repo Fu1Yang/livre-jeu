@@ -14,11 +14,13 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/alternative')]
 class AlternativeController extends AbstractController
 {
+    
     #[Route('/', name: 'app_alternative_index', methods: ['GET'])]
     public function index(AlternativeRepository $alternativeRepository): Response
     {
         return $this->render('alternative/index.html.twig', [
             'alternatives' => $alternativeRepository->findAll(),
+            $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN')
         ]);
     }
 

@@ -6,32 +6,31 @@
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    .row {background-color: white}
+    .row { background-color: white; }
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello  ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>/home/yangfu/livre-jeu/src/Controller/JouerController.php</code></li>
-        <li>Your template at <code>/home/yangfu/livre-jeu/templates/jouer/index.html.twig</code></li>
-    </ul>
 </div>
 
 <div class="col">
     <div class="row p-3 mb-2 bg-white">
         {% for personnage in personnages %}
-        <div class="card col-6 mx-auto"  style="width: 17rem">
-            <img  src="{{ asset('images/avatars/' ~ personnage.avatar.getNomFichier()) }}">
+        <div class="card col-6 mx-auto" style="width: 17rem">
+            <img src="{{ asset('images/avatars/' ~ personnage.avatar.getNomFichier()) }}">
             <div class="card-body col-6 mx-auto">
-                <h5 class="card-title"> <a href="#" class="btn btn-primary btn-lg">{{ personnage.prenom }} {{ personnage.nom }}</a></h5>
+                <h1>{{ personnage.id }}</h1>
+                <h5 class="card-title">
+                    <a href="{{ path('app_choix_aventure', { 'idPersonnage': personnage.id }) }}" class="btn btn-primary btn-lg">
+                        {{ personnage.prenom }} {{ personnage.nom }}
+                    </a>
+                </h5>
             </div>
         </div>
         {% else %}
+        <p>Aucun personnage trouvé.</p>
         {% endfor %}
     </div>
-  
+
     <div class="col d-flex justify-content-end">
         <a href="{{ path('app_jouer_new') }}" class="btn btn-success">Créer</a>
     </div>
